@@ -1,0 +1,32 @@
+<a ui-sref="todo-list">Back to Todo list</a>
+<h3 style="text-align:center">Todo detail page</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <td>Id</td>
+      <td>{{todo.id}}</td>
+    </tr>
+    <tr>
+      <td>Title</td>
+      <td>{{todo.title}}</td>
+    </tr>
+    <tr>
+      <td>Discription</td>
+      <td>{{todo.discription}}</td>
+    </tr>
+    <tr>
+      <td>Due Day</td>
+      <td>{{todo.dueDate | date:"fullDate"}}</td>
+    </tr>
+    <tr>
+      <td>Status</td>
+      <td>{{todo.isComplete | statusFilter}}</td>
+    </tr>
+    <tr>
+      <td>Date create</td>
+      <td>{{todo.createdAt | date:"fullDate"}}</td>
+    </tr>
+  </thead>
+
+  </tbody>
+</table>

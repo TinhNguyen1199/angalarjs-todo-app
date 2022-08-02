@@ -1,0 +1,54 @@
+<div class="app-container d-flex align-items-center justify-content-center flex-column">
+  <h2>Todo App</h2>
+  <form class="form-inline mt-3">
+    <div class="form-group  mx-sm-3 mb-2">
+      <input type="text" class="form-control" ng-model="title" placeholder="Enter your work title">
+    </div>
+    <div class="form-group  mx-sm-3 mb-2">
+      <input type="date" ng-model="dueDate" name="dueDate">
+    </div>
+
+    <button type="submit" class="btn btn-primary mb-2" ng-disabled="!title"
+      ng-click="SendData(title,dueDate)">Add</button>
+  </form>
+
+  <br />
+  <div class="row">
+    <div class="table-wrapper">
+      <table class="table table-hover table-bordered">
+        <tr>
+          <th>Done</th>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+
+          <th scope="col">Status</th>
+
+          <th scope="col">ACtion</th>
+        </tr>
+        <tr ng-repeat="todo in todos" class="{{ todo.isComplete ? 'table-success' : 'table-light' }}">
+          <td>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" ng-model="todo.isComplete"
+                ng-change="finished(todo.id,todo.isComplete)" />
+            </div>
+          </td>
+          <td>{{todo.id}}</td>
+          <td class="{{ todo.isComplete ? 'complete' : 'task' }}">
+            {{todo.title}}
+          </td>
+
+          <td>{{todo.isComplete | statusFilter}}</td>
+
+          <td>
+            <a class="btn btn-primary" ui-sref="todoDetail({id: todo.id})">Detail</a>
+            <a class="btn btn-warning" ui-sref="edit({id: todo.id})">Edit</a>
+            <button class="btn btn-danger" ng-click="DeleteData(todo.id)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <hr />
+</div>
