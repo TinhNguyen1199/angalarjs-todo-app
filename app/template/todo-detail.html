@@ -1,29 +1,29 @@
-<a ui-sref="todo-list">Back to Todo list</a>
+<a ui-sref="todo-list"><i class="bi bi-arrow-left"></i> Back to Todo list</a>
 <h3 style="text-align:center">Todo detail page</h3>
 <table class="table">
   <thead>
     <tr>
-      <td>Id</td>
+      <td><strong>Id</strong></td>
       <td>{{todo.id}}</td>
     </tr>
     <tr>
-      <td>Title</td>
+      <td><strong>Title</strong></td>
       <td>{{todo.title}}</td>
     </tr>
     <tr>
-      <td>Discription</td>
+      <td><strong>Discription</strong></td>
       <td>{{todo.discription}}</td>
     </tr>
     <tr>
-      <td>Due Day</td>
+      <td><strong>Due Day</strong></td>
       <td>{{todo.dueDate | date:"fullDate"}}</td>
     </tr>
     <tr>
-      <td>Status</td>
-      <td>{{todo.isComplete | statusFilter}}</td>
+      <td><strong>Status</strong></td>
+      <td>{{todo.status | statusFilter}}</td>
     </tr>
     <tr>
-      <td>Date create</td>
+      <td><strong>Date create</strong></td>
       <td>{{todo.createdAt | date:"fullDate"}}</td>
     </tr>
   </thead>

@@ -32,8 +32,10 @@ app.run(function ($rootScope) {});
 app.controller("appCtrl", function ($http, $scope, $rootScope) {
   $scope.title = null;
   $scope.discription = null;
-  $scope.isComplete = null;
+  $scope.status = "In progress";
   $scope.dueDate = null;
+  $scope.loading = false;
+  $scope.todos = [];
 
   // Clear function
   $scope.clear = function () {
@@ -42,65 +44,75 @@ app.controller("appCtrl", function ($http, $scope, $rootScope) {
     $scope.dueDate = null;
   };
   // Check due date function
-  $scope.checkDuedate = function (dueDate) {
-    const today = new Date();
-    if (today > dueDate) {
-      console.log(`${today} is greater than ${dueDate}`);
-      $scope.isComplete = true;
-    } else {
-      console.log(`${today} is smaller than ${dueDate}`);
-      $scope.isComplete = false;
-    }
-  };
+  // $scope.checkDuedate = function (dueDate) {
+  //   const today = new Date();
+  //   if (today > dueDate) {
+  //     console.log(`${today} is greater than ${dueDate}`);
+  //     $scope.status = "Completed";
+  //     $scope.isCompleted = true;
+  //   } else {
+  //     console.log(`${today} is smaller than ${dueDate}`);
+  //     $scope.status = "In progress";
+  //     $scope.isCompleted = false;
+  //   }
+  // };
 
   // Create
   $scope.SendData = function (title, dueDate) {
-    $scope.checkDuedate(dueDate);
-
+    // $scope.checkDuedate(dueDate);
+    $scope.loading = true;
+    // $scope.status = "In progress";
+    const today = new Date();
     $http
       .post(url, {
         title: title,
-        isComplete: $scope.isComplete,
+        status: today > dueDate ? "Completed" : "In progress",
         dueDate: dueDate,
+        isCompleted: today > dueDate,
       })
       .then(function (respone) {
         console.log(respone);
 
         $scope.fetchData();
         $scope.clear();
+        $scope.loading = false;
       });
   };
 
   // Delete
   $scope.DeleteData = function (id) {
     var updateUrl = `${url}/${id}`;
-    console.log(updateUrl);
-    $http.delete(updateUrl).then(function (respone) {
-      console.log(respone);
-      console.log("delete completed");
-      $scope.fetchData();
-    });
+    let msg = "Are you sure to delete this item?";
+    if (confirm(msg) == true) {
+      $http.delete(updateUrl).then(function (respone) {
+        console.log(respone);
+
+        alert("Item has deleted Successfully");
+        $scope.fetchData();
+      });
+    } else {
+      console.log("You canceled!");
+    }
   };
   //Get all todo list
   $scope.fetchData = function () {
     $http.get(url).then(function (respone) {
       $scope.todos = respone.data;
-      console.log("fetch working");
+      console.log($scope.todos.length ? "nen true" : "nen false");
+      console.log("fetch working", respone.data);
     });
   };
 
   $scope.fetchData();
 
   //Finished todo
-  $scope.finished = function (id, avtive) {
-    if (avtive) {
-      $scope.isComplete = true;
-    } else {
-      $scope.isComplete = false;
-    }
+  $scope.finished = function (id, status) {
+    console.log("id", id);
+    console.log("status", status);
+    $scope.status = status;
 
-    console.log("Done: " + $scope.isComplete + "; id: " + id);
-    $http.put(`${url}/${id}`, { isComplete: $scope.isComplete });
+    console.log("Done: " + $scope.status + "; id: " + id);
+    $http.put(`${url}/${id}`, { status: $scope.status });
     console.log(`Your work id ${id} is change!`);
   };
 });
@@ -119,6 +131,7 @@ app.controller(
       $scope.todo = respone.data[0];
     });
 
+    //Updat todo
     $scope.UpdateData = function (id) {
       var updateUrl = `${url}/${id}`;
 
@@ -126,19 +139,22 @@ app.controller(
         .put(updateUrl, {
           title: $scope.todo.title,
           discription: $scope.todo.discription,
-          isComplete: JSON.parse($scope.todo.isComplete),
+          status: $scope.todo.status,
           dueDate: $scope.todo.dueDate,
+          isCompleted: $scope.todo.status === "Completed",
         })
         .then(function (respone) {
-          console.log("Update completed");
-          console.log(respone.data.isComplete);
+          console.log($scope.todo.dueDate);
+          console.log($scope.todo.status);
+          alert("Update completed");
+          console.log(respone.data.status.toString());
         });
     };
     // Clear text
     $scope.clear = function () {
       $scope.todo.title = "";
       $scope.todo.discription = "";
-      $scope.todo.isComplete = "";
+      $scope.todo.status = "";
     };
   }
 );
