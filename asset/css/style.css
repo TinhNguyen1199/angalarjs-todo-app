@@ -1,7 +1,6 @@
 .complete {
   text-decoration: line-through;
 }
-
 .table td,
 .table th {
   min-width: 105px;

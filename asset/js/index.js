@@ -27,7 +27,7 @@ app.config(function (
       controller: "appCtrl",
     });
 });
-app.run(function ($rootScope) {});
+// app.run(function ($rootScope) {});
 
 app.controller("appCtrl", function ($http, $scope, $rootScope) {
   $scope.title = null;
@@ -43,26 +43,13 @@ app.controller("appCtrl", function ($http, $scope, $rootScope) {
     $scope.discription = "";
     $scope.dueDate = null;
   };
-  // Check due date function
-  // $scope.checkDuedate = function (dueDate) {
-  //   const today = new Date();
-  //   if (today > dueDate) {
-  //     console.log(`${today} is greater than ${dueDate}`);
-  //     $scope.status = "Completed";
-  //     $scope.isCompleted = true;
-  //   } else {
-  //     console.log(`${today} is smaller than ${dueDate}`);
-  //     $scope.status = "In progress";
-  //     $scope.isCompleted = false;
-  //   }
-  // };
+
 
   // Create
   $scope.SendData = function (title, dueDate) {
-    // $scope.checkDuedate(dueDate);
     $scope.loading = true;
-    // $scope.status = "In progress";
     const today = new Date();
+    
     $http
       .post(url, {
         title: title,
@@ -98,7 +85,6 @@ app.controller("appCtrl", function ($http, $scope, $rootScope) {
   $scope.fetchData = function () {
     $http.get(url).then(function (respone) {
       $scope.todos = respone.data;
-      console.log($scope.todos.length ? "nen true" : "nen false");
       console.log("fetch working", respone.data);
     });
   };
@@ -109,10 +95,13 @@ app.controller("appCtrl", function ($http, $scope, $rootScope) {
   $scope.finished = function (id, status) {
     console.log("id", id);
     console.log("status", status);
-    $scope.status = status;
+    $scope.status = status == "Completed" ? "In progress" : "Completed";
+    $scope.isCompleted = $scope.status === "Completed";
+    console.log($scope.status)
+    console.log($scope.isCompleted)
 
     console.log("Done: " + $scope.status + "; id: " + id);
-    $http.put(`${url}/${id}`, { status: $scope.status });
+    $http.put(`${url}/${id}`, { status: $scope.status, isCompleted: $scope.status === "Completed" });
     console.log(`Your work id ${id} is change!`);
   };
 });

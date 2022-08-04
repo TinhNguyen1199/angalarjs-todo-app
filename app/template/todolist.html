@@ -41,7 +41,7 @@
             {{todo.title}}
           </td>
 
-          <td>{{todo.status | statusFilter}}</td>
+          <td>{{todo.isCompleted | statusFilter}}</td>
 
           <td>
             <a class="btn btn-primary" ui-sref="todoDetail({id: todo.id})"><i class="bi bi-journal-text"></i></a>
