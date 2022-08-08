@@ -36,6 +36,23 @@ app.controller("appCtrl", function ($http, $scope, $rootScope) {
   $scope.dueDate = null;
   $scope.loading = false;
   $scope.todos = [];
+  $scope.sortColumn = "done";
+  $scope.reverse = false;
+  $scope.numRow = 3;
+  $scope.searchText = "";
+
+  // Sort function
+  $scope.sortData = function (column) {
+    if ($scope.sortColumn == column) $scope.reverse = !$scope.reverse;
+    $scope.sortColumn = column;
+  };
+  // Set sort class
+  $scope.getSortClass = function (column) {
+    if ($scope.sortColumn == column) {
+      return $scope.reverse ? "arrow-up" : "arrow-down";
+    }
+    return "";
+  };
 
   // Clear function
   $scope.clear = function () {
@@ -44,12 +61,11 @@ app.controller("appCtrl", function ($http, $scope, $rootScope) {
     $scope.dueDate = null;
   };
 
-
   // Create
   $scope.SendData = function (title, dueDate) {
     $scope.loading = true;
     const today = new Date();
-    
+
     $http
       .post(url, {
         title: title,
@@ -97,11 +113,14 @@ app.controller("appCtrl", function ($http, $scope, $rootScope) {
     console.log("status", status);
     $scope.status = status == "Completed" ? "In progress" : "Completed";
     $scope.isCompleted = $scope.status === "Completed";
-    console.log($scope.status)
-    console.log($scope.isCompleted)
+    console.log($scope.status);
+    console.log($scope.isCompleted);
 
     console.log("Done: " + $scope.status + "; id: " + id);
-    $http.put(`${url}/${id}`, { status: $scope.status, isCompleted: $scope.status === "Completed" });
+    $http.put(`${url}/${id}`, {
+      status: $scope.status,
+      isCompleted: $scope.status === "Completed",
+    });
     console.log(`Your work id ${id} is change!`);
   };
 });

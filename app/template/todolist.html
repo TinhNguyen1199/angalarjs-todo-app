@@ -18,18 +18,36 @@
   <br>
   <div class="row">
     <div class="table-wrapper">
+
+      <div class="form-group row">
+        <label for="inputPassword" class="col-form-label">Show :</label>
+
+        <div class="col-3">
+          <input type="number" class="form-control" type="number" ng-model="numRow">
+        </div>
+
+        <label for="inputPassword" class="col-form-label">Search</label>
+
+        <div class="col-3">
+          <input type="text" class="form-control" type="text" ng-model="searchText">
+        </div>
+      </div>
+
       <table class="table table-hover table-bordered " id="todo-list-table">
         <tr>
           <th>Done</th>
-          <th>#</th>
-          <th>Title</th>
+          <th ng-click="sortData('id')"># <div ng-class="getSortClass('id')"></div>
+          </th>
+          <th ng-click="sortData('title')">Title <div ng-class="getSortClass('title')"></div>
+          </th>
           <th>Status</th>
           <th>Action</th>
         </tr>
         <tr ng-if="!todos.length">
           <td colspan="5" class="text-center">Empty data</td>
         </tr>
-        <tr ng-repeat="todo in todos" class="{{ todo.isCompleted ? 'table-success' : '' }}">
+        <tr ng-repeat="todo in todos | orderBy:sortColumn:reverse | limitTo:numRow | filter: searchText"
+          class="{{ todo.isCompleted ? 'table-success' : '' }}">
           <td class="center-col">
             <div class="form-check" style="display: inline;">
               <input class="form-check-input" type="checkbox" ng-model="todo.isCompleted"
