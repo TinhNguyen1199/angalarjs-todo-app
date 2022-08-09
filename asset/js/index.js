@@ -168,10 +168,24 @@ app.controller(
 );
 
 //-------------------------------------
-// Directive
-app.directive("todoDetail", function () {
-  return {
-    restrict: "E",
-    templateUrl: "./component/todo.html",
-  };
+//Component
+
+app.component("addForm", {
+  templateUrl: "../../app/components/add-form/add-form.component.html",
+  controller: "appCtrl",
+});
+
+app.component("filterItem", {
+  templateUrl: "../../app/components/filter-item/filter-item.component.html",
+  controller: "appCtrl",
+});
+
+app.component("todoTable", {
+  templateUrl: "../../app/components/todo-table/todo-table.component.html",
+  controller: "appCtrl",
+});
+
+app.component("todoItem", {
+  templateUrl: "../../app/components/todo-item/todo-item.component.html",
+  controller: "appCtrl",
 });
