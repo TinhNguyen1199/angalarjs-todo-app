@@ -27,7 +27,6 @@ app.config(function (
       controller: "appCtrl",
     });
 });
-// app.run(function ($rootScope) {});
 
 app.controller("appCtrl", function ($http, $scope, $rootScope) {
   $scope.title = null;
@@ -75,6 +74,7 @@ app.controller("appCtrl", function ($http, $scope, $rootScope) {
       })
       .then(function (respone) {
         console.log(respone);
+        alert("Add successfully!");
 
         $scope.fetchData();
         $scope.clear();
@@ -122,6 +122,11 @@ app.controller("appCtrl", function ($http, $scope, $rootScope) {
       isCompleted: $scope.status === "Completed",
     });
     console.log(`Your work id ${id} is change!`);
+  };
+
+  //test function
+  $scope.change = function () {
+    alert("Hello its working");
   };
 });
 
@@ -182,10 +187,5 @@ app.component("filterItem", {
 
 app.component("todoTable", {
   templateUrl: "../../app/components/todo-table/todo-table.component.html",
-  controller: "appCtrl",
-});
-
-app.component("todoItem", {
-  templateUrl: "../../app/components/todo-item/todo-item.component.html",
   controller: "appCtrl",
 });
