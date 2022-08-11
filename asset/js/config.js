@@ -6,12 +6,14 @@ requirejs.config({
     jquery: "jquery-3.3.1.slim.min",
     popper: "popper.min",
     bootstrap: "bootstrap.min",
+    domReady: "../lib/domReady",
     index: "../index",
     statusFilter: "../../app/shared/filters/statusFilter",
     addFormCtrl: "../../../app/components/add-form/add-form.component",
     filterItem: "../../../app/components/filter-item/filter-item.component",
     todoTable: "../../../app/components/todo-table/todo-table.component",
     myApp: "../myApp",
+    routes: "../routes",
   },
   shim: {
     bootstrap: {
@@ -21,23 +23,12 @@ requirejs.config({
     popper: {
       exports: "popper",
     },
-
-    index: {
-      deps: ["angularUiRouter"],
+    angular: {
+      exports: "angular",
     },
     angularUiRouter: {
       deps: ["angular"],
     },
-    myApp: {
-      deps: ["angularUiRouter"],
-    },
   },
-});
-
-// require(["index"], function () {
-//   angular.bootstrap(document, ["app"]);
-// });
-
-require(["myApp"], function () {
-  angular.bootstrap(document, ["myApp"]);
+  deps: ["../app.init"],
 });
