@@ -3,7 +3,7 @@ define(["angular"], function (angular) {
 
   angular.module("add-form.module", [])
     .component("addForm", {
-      templateUrl: "app/components/add-form/add-form.component.html",
+      templateUrl: "main/components/add-form/add-form.component.html",
       controller: AddFormController,
     });
 

@@ -24,5 +24,5 @@ requirejs.config({
       deps: ["angular"],
     },
   },
-  deps: ["./main/app.init"],
+  deps: ["./app/app.init"],
 });

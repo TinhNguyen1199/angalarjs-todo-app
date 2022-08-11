@@ -3,7 +3,7 @@ define(["angular"], function (angular) {
 
   angular.module('filter-item.module', [])
     .component('filterItem', {
-      templateUrl: 'app/components/filter-item/filter-item.component.html',
+      templateUrl: 'main/components/filter-item/filter-item.component.html',
       controller: FilterItemController,
     })
 

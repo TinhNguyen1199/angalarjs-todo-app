@@ -1,6 +1,6 @@
 console.log("LOADING routes.js");
 
-define(["./main/app"], function (app) {
+define(["./app/app"], function (app) {
   "use strict";
 
   return app.config(function (
@@ -15,16 +15,16 @@ define(["./main/app"], function (app) {
     $stateProvider
       .state("todo-list", {
         url: "/todo-list",
-        templateUrl: "app/template/todolist.html",
+        templateUrl: "./main/template/todolist.html",
       })
       .state("edit", {
         url: "/edit/:id",
-        templateUrl: "../../app/template/edit.html",
+        templateUrl: "./main/template/edit.html",
         // controller: "todoDetailCtrl",
       })
       .state("todoDetail", {
         url: "/detail/:id",
-        templateUrl: "../../app/template/todo-detail.html",
+        templateUrl: "./main/template/todo-detail.html",
         // controller: "todoDetailCtrl",
       })
   });

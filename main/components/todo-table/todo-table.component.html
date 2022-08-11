@@ -15,8 +15,9 @@
   <tr ng-if="!todos.length">
     <td colspan="5" class="text-center">Empty data</td>
   </tr>
+  <!-- ng-repeat="todo in $ctrl.todos | orderBy:sortColumn:reverse | limitTo:numRow | filter: searchText" -->
   <tr
-    ng-repeat="todo in todos | orderBy:sortColumn:reverse | limitTo:numRow | filter: searchText"
+    ng-repeat="todo in $ctrl.todos | orderBy:sortColumn:reverse | limitTo:numRow"
     class="{{ todo.isCompleted ? 'table-success' : '' }}"
   >
     <td class="center-col">

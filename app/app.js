@@ -3,7 +3,7 @@ console.log("LOADING app.js");
 define([
   "angular",
   "angularUiRouter",
-  "../app/main.module"
+  "../main/main.module"
 ], function (angular) {
   'use strict';
 
