@@ -2,9 +2,9 @@ console.log("LOADING main.module.js");
 
 define([
   'angular',
-  './add-form/add-form.component',
-  './filter-item/filter-item.component',
-  './todo-table/todo-table.component',
+  './components/add-form/add-form.component',
+  './components/filter-item/filter-item.component',
+  './components/todo-table/todo-table.component',
 ], function (angular) {
   'use strict';
 

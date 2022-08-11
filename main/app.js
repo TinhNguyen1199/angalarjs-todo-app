@@ -1,7 +1,11 @@
 console.log("LOADING app.js");
 
-define(["angular", "angularUiRouter", "../app/components/main.module"], function (ng) {
+define([
+  "angular",
+  "angularUiRouter",
+  "../app/main.module"
+], function (angular) {
   'use strict';
 
-  return ng.module("app", ["ui.router", "main.module"]);
+  return angular.module("app", ["ui.router", "main.module"]);
 });
