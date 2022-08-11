@@ -1,9 +1,15 @@
-define(["myApp"], function (myApp) {
+define(["angular"], function (angular) {
   "use strict";
-  return myApp
-    .controller("addFormCtrl", function ($scope) {})
+
+  angular.module("add-form.module", [])
     .component("addForm", {
-      templateUrl: "../../app/components/add-form/add-form.component.html",
-      controller: "addFormCtrl",
+      templateUrl: "app/components/add-form/add-form.component.html",
+      controller: AddFormController,
     });
+
+  function AddFormController() {
+    var ctrl = this;
+
+    console.log("AddFormController :>> ", ctrl);
+  }
 });

@@ -1,8 +1,16 @@
-define(["myApp"], function (myApp) {
-  myApp.register.controller("View1Controller", [
-    "$scope",
-    function ($scope) {
-      $scope.title = "View 1";
-    },
-  ]);
+define(["angular"], function (angular) {
+  "use strict";
+
+  angular.module('filter-item.module', [])
+    .component('filterItem', {
+      templateUrl: 'app/components/filter-item/filter-item.component.html',
+      controller: FilterItemController,
+    })
+
+  function FilterItemController() {
+    var ctrl = this;
+
+    console.log('FilterItemController :>> ', ctrl);
+  }
+
 });

@@ -1,13 +1,22 @@
-define(["myApp", "addFormCtrl"], function (myApp) {
+console.log("LOADING routes.js");
+
+define(["./main/app"], function (app) {
   "use strict";
-  return myApp.config(function (
+
+  return app.config(function (
     $stateProvider,
     $urlMatcherFactoryProvider,
     $urlRouterProvider
   ) {
     $urlRouterProvider.otherwise("/todo-list");
+
     $urlMatcherFactoryProvider.caseInsensitive(true);
+
     $stateProvider
+      .state("todo-list", {
+        url: "/todo-list",
+        templateUrl: "app/template/todolist.html",
+      })
       .state("edit", {
         url: "/edit/:id",
         templateUrl: "../../app/template/edit.html",
@@ -18,10 +27,5 @@ define(["myApp", "addFormCtrl"], function (myApp) {
         templateUrl: "../../app/template/todo-detail.html",
         // controller: "todoDetailCtrl",
       })
-      .state("todo-list", {
-        url: "/todo-list",
-        templateUrl: "../../app/template/todolist.html",
-        controller: "addFormCtrl",
-      });
   });
 });
