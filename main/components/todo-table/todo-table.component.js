@@ -13,19 +13,28 @@ define(["angular"], function (angular) {
 
     console.log("TodoTableController :>> ", ctrl);
 
+    ctrl.numRow = 4;
+    ctrl.searchText = "";
     ctrl.todos = [];
 
+    //init
     ctrl.$onInit = function () {
       todoService.fetchTodos().then(({ data }) => {
         ctrl.todos = data;
         console.log("ctrl.todos :>> ", ctrl.todos);
       });
     };
+
+    //Delete todo function
     ctrl.DeleteData = function (id) {
       todoService.deleteTodoById(id);
     };
 
-    ctrl.numRow = 4;
-    ctrl.searchText = "";
+    //Check to finish todo function
+    ctrl.finished = function (id, status) {
+      console.log(`id: ${id}, stutus: ${status}`);
+      ctrl.status = status == "Completed" ? "In progress" : "Completed";
+      todoService.FinishTodo(id, ctrl.status);
+    };
   }
 });

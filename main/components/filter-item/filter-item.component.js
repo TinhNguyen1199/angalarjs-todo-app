@@ -9,7 +9,5 @@ define(["angular"], function (angular) {
 
   function FilterItemController() {
     var ctrl = this;
-
-    console.log("FilterItemController :>> ", ctrl);
   }
 });

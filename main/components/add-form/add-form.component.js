@@ -13,8 +13,14 @@ define(["angular"], function (angular) {
 
     ctrl.title = "";
     ctrl.dueDate = "";
+    ctrl.loading = false;
+
+    //Add new todo item function
     ctrl.SendData = function (title, dueDate) {
-      todoService.addTodo(title, dueDate);
+      ctrl.loading = true;
+      todoService.addTodo(title, dueDate).then(() => {
+        ctrl.loading = false;
+      });
     };
   }
 });

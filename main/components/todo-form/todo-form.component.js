@@ -13,6 +13,7 @@ define(["angular"], function (angular) {
 
     ctrl.todo = [];
 
+    // Initialze and get todo from api
     ctrl.$onInit = function () {
       todoService.getTodoById().then(({ data }) => {
         ctrl.todo = data[0];

@@ -28,7 +28,7 @@
           class="form-check-input"
           type="checkbox"
           ng-model="todo.isCompleted"
-          ng-change="finished(todo.id, todo.status)"
+          ng-change="$ctrl.finished(todo.id, todo.status)"
         />
       </div>
     </td>
