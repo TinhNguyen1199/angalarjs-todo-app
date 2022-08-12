@@ -1,29 +1,29 @@
 console.log("LOADING main.module.js");
 
 define([
-  'angular',
+  "angular",
 
   // COMPONENTS
-  './components/add-form/add-form.component',
-  './components/filter-item/filter-item.component',
-  './components/todo-table/todo-table.component',
-
-
+  "./components/add-form/add-form.component",
+  "./components/filter-item/filter-item.component",
+  "./components/todo-table/todo-table.component",
+  "./components/edit-form/edit-form.component",
   // SERVICES
-  './services/todo.service',
+  "./services/todo.service",
 
   // DIRECTIVES
 
   // FILTERS
-  './shared/filters/statusFilter'
+  "./shared/filters/statusFilter",
 ], function (angular) {
-  'use strict';
+  "use strict";
 
-  return angular.module('main.module', [
-    'add-form.module',
-    'filter-item.module',
-    'todo-table.module',
-    'todo-service.module',
-    'status-filter.module'
+  return angular.module("main.module", [
+    "add-form.module",
+    "filter-item.module",
+    "todo-table.module",
+    "todo-service.module",
+    "status-filter.module",
+    "edit-form.module",
   ]);
 });

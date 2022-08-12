@@ -1,27 +1,28 @@
 define(["angular"], function (angular) {
   "use strict";
 
-  angular.module('todo-table.module', [])
-    .component('todoTable', {
-      templateUrl: 'main/components/todo-table/todo-table.component.html',
-      controller: AddFormController,
-    })
+  angular.module("todo-table.module", []).component("todoTable", {
+    templateUrl: "main/components/todo-table/todo-table.component.html",
+    controller: AddFormController,
+  });
 
   function AddFormController(todoService) {
-    'ngInject';
-    
+    "ngInject";
+
     var ctrl = this;
-    
-    console.log('TodoTableController :>> ', ctrl);
+
+    console.log("TodoTableController :>> ", ctrl);
 
     ctrl.todos = [];
 
     ctrl.$onInit = function () {
       todoService.fetchTodos().then(({ data }) => {
         ctrl.todos = data;
-        console.log('ctrl.todos :>> ', ctrl.todos);
+        console.log("ctrl.todos :>> ", ctrl.todos);
       });
-    }
+    };
+    ctrl.DeleteData = function (id) {
+      todoService.deleteTodoById(id);
+    };
   }
-
 });

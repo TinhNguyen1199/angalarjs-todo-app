@@ -26,6 +26,6 @@ define(["./app/app"], function (app) {
         url: "/detail/:id",
         templateUrl: "./main/template/todo-detail.html",
         // controller: "todoDetailCtrl",
-      })
+      });
   });
 });

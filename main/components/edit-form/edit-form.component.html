@@ -1,0 +1,58 @@
+<form>
+  <div class="form-group row">
+    <label class="col-6 col-form-label font-weight-bold">Title</label>
+    <div class="col-12">
+      <input type="text" class="form-control" id="inputEmail3" placeholder="Enter your title"
+        ng-model="$ctrl.todo.title" />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-6 col-form-label font-weight-bold">Description</label>
+    <div class="col-12">
+      <textarea class="form-control" id="exampleFormControlTextarea1" ng-model="$ctrl.todo.discription"
+        rows="3"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-6 col-form-label font-weight-bold">Due date</label>
+    <div class="col-12">
+      <input type="date" class="form-control" ng-model="todo.dueDate" name="dueDate">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <legend class="col-form-label col-6 pt-0 font-weight-bold">Status</legend>
+    <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gridRadios" value="In progress" ng-model="$ctrl.todo.status">
+        <label class="form-check-label" for="gridRadios1">
+          In progess
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gridRadios" value="Completed" ng-model="$ctrl.todo.status">
+        <label class="form-check-label" for="gridRadios2">
+          Completed
+        </label>
+      </div>
+
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col">
+      <button type="button" ng-click="$ctrl.UpdateData($ctrl.todo.id,$ctrl.todo.title, $ctrl.todo.discription, $ctrl.todo.status, $ctrl.todo.dueDate)"
+        class="btn btn-success text-center float-right right px-4">
+        Submit
+      </button>
+    </div>
+
+    <div class="col">
+      <button type="button" ng-click="$ctrl.clear()" class="btn btn-warning mx-5 px-4">
+        Reset
+      </button>
+    </div>
+  </div>
+
+</div>
+</form>
