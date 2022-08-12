@@ -27,7 +27,12 @@ define(["angular"], function (angular) {
 
     //Delete todo function
     ctrl.DeleteData = function (id) {
-      todoService.deleteTodoById(id);
+      todoService.deleteTodoById(id).then(() => {
+        alert("Item has deleted Successfully");
+        todoService.fetchTodos().then(({ data }) => {
+          ctrl.todos = data;
+        });
+      });
     };
 
     //Check to finish todo function

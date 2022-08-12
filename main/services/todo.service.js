@@ -29,8 +29,7 @@ define(["angular"], function (angular) {
       deleteTodoById: function (id) {
         let msg = "Are you sure to delete this item?";
         if (confirm(msg) == true) {
-          $http.delete(`${API_URL}/todo/todos/${id}`);
-          alert("Item has deleted Successfully");
+          return $http.delete(`${API_URL}/todo/todos/${id}`);
         } else {
           console.log("You choose canceled!");
         }
