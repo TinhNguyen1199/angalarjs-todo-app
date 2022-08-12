@@ -1,3 +1,5 @@
+<filter-item num="$ctrl.numRow" search="$ctrl.searchText"></filter-item>
+
 <table class="table table-hover table-bordered" id="todo-list-table">
   <tr>
     <th>Done</th>
@@ -15,9 +17,9 @@
   <tr ng-if="!$ctrl.todos.length">
     <td colspan="5" class="text-center">Empty data</td>
   </tr>
-  <!-- ng-repeat="todo in $ctrl.todos | orderBy:sortColumn:reverse | limitTo:numRow | filter: searchText" -->
+
   <tr
-    ng-repeat="todo in $ctrl.todos | orderBy:sortColumn:reverse | limitTo:numRow"
+    ng-repeat="todo in $ctrl.todos | orderBy:sortColumn:reverse | limitTo:$ctrl.numRow | filter: $ctrl.searchText"
     class="{{ todo.isCompleted ? 'table-success' : '' }}"
   >
     <td class="center-col">

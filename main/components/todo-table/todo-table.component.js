@@ -24,5 +24,8 @@ define(["angular"], function (angular) {
     ctrl.DeleteData = function (id) {
       todoService.deleteTodoById(id);
     };
+
+    ctrl.numRow = 4;
+    ctrl.searchText = "";
   }
 });

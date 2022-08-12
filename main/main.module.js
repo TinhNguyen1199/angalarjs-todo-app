@@ -8,6 +8,7 @@ define([
   "./components/filter-item/filter-item.component",
   "./components/todo-table/todo-table.component",
   "./components/edit-form/edit-form.component",
+  "./components/todo-form/todo-form.component",
   // SERVICES
   "./services/todo.service",
 
@@ -25,5 +26,6 @@ define([
     "todo-service.module",
     "status-filter.module",
     "edit-form.module",
+    "todo-form.module",
   ]);
 });
